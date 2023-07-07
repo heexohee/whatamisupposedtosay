@@ -7,8 +7,12 @@ const TodoListContainer = () => {
   return (
     <StTodos>
       {todos.map((todo) => (
-        <StTodo key={todo.id}>{todo.title}</StTodo>
+        <StTodo key={todo.id}>{todo.title} 
+     <br/>
+       
+         </StTodo>
       ))}
+     
     </StTodos>
   );
 };

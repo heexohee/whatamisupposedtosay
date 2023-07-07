@@ -3,8 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../redux/modules/todos";
 import styled from "styled-components";
 
+import uuid from 'react-uuid';
+
+// 디스패치(Dispatch): 액션을 발생시키는 함수로, 
+// 스토어에 액션을 전달하여 상태 변경을 트리거합니다.
+
 const AddForm = () => {
   const [title, setTitle] = useState("");
+  const [content, setContents] = useState("");
+
   const todos = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
 
@@ -12,21 +19,26 @@ const AddForm = () => {
     e.preventDefault();
     if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
 
-    dispatch(
+    dispatch( // dispatch 함수를 사용하여 addTodo 액션을 디스패치.
       addTodo({
-        id: todos.length + 1,
-        title,
+        id: uuid(),
+        title
+        
       })
     );
   };
 
+  
+
   return (
+  
     <StFormContainer>
       <form onSubmit={onSubmitHandler}>
         <label>Todos의 제목을 입력하세요</label>
         <StInput
           type="text"
-          value={title}
+          name="title"
+          value={todos.title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -34,6 +46,7 @@ const AddForm = () => {
         <StButton>추가하기</StButton>
       </form>
     </StFormContainer>
+  
   );
 };
 
@@ -48,7 +61,7 @@ const StFormContainer = styled.div`
 const StButton = styled.button`
   border: none;
   background-color: #eee;
-  height: 25px;
+  height: 40px;
   cursor: pointer;
   width: 120px;
   border-radius: 12px;
@@ -57,9 +70,9 @@ const StButton = styled.button`
 const StInput = styled.input`
   border: 1px solid #eee;
   margin: 0 24px;
-  height: 25px;
+  height: 30px;
   width: 300px;
-  border-radius: 12px;
+  border-radius: 10px;
   outline: none;
   padding: 0 10px;
 `;
