@@ -15,6 +15,9 @@ const TodoListContainer = () => {
 
 export default TodoListContainer;
 
+
+// 스타일드 컴포넌트
+
 const StTodos = styled.div`
   display: flex;
   gap: 12px;

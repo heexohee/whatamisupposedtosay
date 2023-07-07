@@ -6,7 +6,7 @@ export const addTodo = (payload) => {
   return { type: ADD_TODO, payload };
 };
 
-// initial State
+// initial State 초기값 선언
 const initialState = {
   todos: [
     {
@@ -20,7 +20,7 @@ const initialState = {
   ],
 };
 
-// Reducer
+// Reducer 함수
 const todos = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
